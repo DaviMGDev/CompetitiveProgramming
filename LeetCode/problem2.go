@@ -1,50 +1,41 @@
-package main 
-
-import "fmt"
-
-type ListNode struct {
-    Val int
-    Next *ListNode
-}
-
-func (ll *ListNode) Append(value int) {
-	newNode := &ListNode{Val: value, Next: nil}
-	if ll == nil {
-		return newNode
-	}
-	i := ll
-	for i.Next != nil{
-		i = i.Next
-	}
-	i.Next = newNode
-}
-
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
-	a, b := l1, l2
-	l3    := &ListNode{Val: 0, Next: nil}
-	c     := l3
-	carry, sum := false, 0
-	for {
-		if a == nil {
-			if b == nil {
-				if carry {
-					l3.Append(1)
-				}
-				return l3
-			} else {
-				if carry {
-					sum
-				}
-			}
-		} else {
-			if b == nil {
-			} else {
+    l3 := &ListNode{
+        Val: 0,
+        Next: nil,
+    }
 
-			}
-		}
-	}
-}
+    a, b, c := l1, l2, l3
+    carry := 0
+    sum   := 0
+    for a != nil || b != nil || carry != 0 {
 
-func main() {
+        x := 0
+        if a != nil {
+            x = a.Val
+            a = a.Next
+        }
+        y := 0
+        if b != nil {
+            y = b.Val
+            b = b.Next
+        }
+        
+        sum = x + y + carry
+        if sum != 0 {
+            c.Next = &ListNode{}
+            c = c.Next
+            value := sum % 10
+            c.Val = value
+        }
+        carry = sum / 10
+    }
 
+    return l3
 }
