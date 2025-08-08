@@ -1,0 +1,23 @@
+func main() {
+  counter = 1
+  medias: priorityQueue[pair[int, int]]
+  while (n := int(input()) > 0) {
+    medias.clean()
+    consumo    = 0
+    residentes = 0
+    for (int i = 0; i < n; i++) {
+      x, y = int(input()), int(input())
+      consumo    += y
+      residentes += x
+      medias.push((residentes, int(floor(consumo / residentes))))
+    }
+    consumo_medio = consumo / residentes
+    print(f"Cidade# {counter}:\n")
+    for (r, m := medias) {
+      print(f"{r}-{m}")
+    }
+    print(f"Consumo medio: {consumo_medio.2f} m3.\n")
+    println()
+    counter++
+  }
+}
